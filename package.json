@@ -1,0 +1,10 @@
+{
+  "name": "testerprimeandressa",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Andressa Pardini",
+  "license": "MIT",
+  "devDependencies": {
+    "cypress": "^12.17.4"
+  }
+}
