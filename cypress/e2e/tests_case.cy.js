@@ -1,5 +1,7 @@
+// Teste automatizado para validar o cadastro bem-sucedido
 describe('Cadastro 01', () => {
   it('Validar se é possível se cadastrar com sucesso', () => {
+    // Acessar a URL da página de demonstração
     cy.visit('https://phptravels.com/demo');
 
     // Preencher os campos com os dados pessoais do usuário
@@ -15,7 +17,7 @@ describe('Cadastro 01', () => {
       cy.get('input[placeholder="Result ?"]').type(sum.toString(), { force: true });
     });
 
-    // Clicar no botão
+    // Clicar no botão de envio
     cy.contains('button', 'Submit').click({ force: true });
 
     // Validar a mensagem de cadastro realizado com sucesso
@@ -24,8 +26,10 @@ describe('Cadastro 01', () => {
   });
 });
 
+// Teste automatizado para validar a validação de campo obrigatório não preenchido
 describe('Cadastro 02 - Campo Obrigatório não Preenchido', () => {
   it('Tentar fazer um cadastro sem um campo obrigatório e validar a mensagem de erro', () => {
+    // Acessar a URL da página de demonstração
     cy.visit('https://phptravels.com/demo');
 
     // Preencher os campos com os dados pessoais do usuário, exceto o e-mail
@@ -40,19 +44,12 @@ describe('Cadastro 02 - Campo Obrigatório não Preenchido', () => {
       cy.get('input[placeholder="Result ?"]').type(sum.toString(), { force: true });
     });
 
-    // Clicar no botão
+    // Clicar no botão de envio
     cy.contains('button', 'Submit').click({ force: true });
 
-    // // Validar a mensagem de obrigatoriedade do campo não preenchido
-    // cy.get('.has-error p.help-block').should('contain', 'The Email field is required.');
-
-    // Verificar se a mensagem de erro esperada está presente em qualquer lugar da página
+    // Verificar se a mensagem de erro esperada está presente em uma janela de alerta
     cy.on('window:alert', (alertText) => {
       expect(alertText).to.equal('Please type your email name')
     }) 
-
   });
 });
-
-
-
